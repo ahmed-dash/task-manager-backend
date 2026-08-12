@@ -11,13 +11,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh '''
-                cd /opt/task-manager
-                docker compose -f docker-compose.prod.yml up -d --build backend
-                docker compose -f docker-compose.prod.yml exec -T backend alembic upgrade head
-                '''
-            }
-        }
+                sh 'cd /opt/task-manager && docker compose -f docker-compose.prod.yml up -d --build backend'
             }
         }
     }
